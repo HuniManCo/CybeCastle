@@ -27,21 +27,21 @@ function initCanvas(){
     }
 
     var tankeak = [
-            new tankeTemplate({id: "Tanke 1", x: 350, y: -70, w: 80, h: 80, image: tankeImage}),
-            new tankeTemplate({id: "Tanke 2", x: 330, y: -90, w: 80, h: 80, image: tankeImage}),
-            new tankeTemplate({id: "Tanke 3", x: 400, y: -70, w: 80, h: 80, image: tankeImage}),
-            new tankeTemplate({id: "Tanke 4", x: 250, y: -95, w: 80, h: 80, image: tankeImage}),
-            new tankeTemplate({id: "Tanke 5", x: 460, y: -85, w: 80, h: 80, image: tankeImage}),
-            new tankeTemplate({id: "Tanke 6", x: 360, y: -75, w: 80, h: 80, image: tankeImage}),
-            new tankeTemplate({id: "Tanke 7", x: 300, y: -60, w: 80, h: 80, image: tankeImage}),
-            new tankeTemplate({id: "Tanke 8", x: 210, y: -95, w: 80, h: 80, image: tankeImage}),
+            new tankeTemplate({id: "Tanke 1", x: 350, y: -70, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 2", x: 330, y: -90, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 3", x: 400, y: -70, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 4", x: 250, y: -95, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 5", x: 460, y: -85, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 6", x: 360, y: -75, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 7", x: 300, y: -60, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 8", x: 210, y: -95, w: 80, h: 80}),
     ];
 
     var renderTankeak = function (tankeZerrenda){
         for (var i = 0; i < tankeZerrenda.length; i++){
             console.log(tankeZerrenda[i]);
-            ctx.drawImage(tankeZerrenda[i].image, tankeZerrenda[i].x, tankeZerrenda[i].y += .5, tankeZerrenda[i].w, tankeZerrenda[i].h);
-            launcher.hitDetectLowerLevel(tankeZerrenda[i]);
+            ctx.drawImage(tankeZerrenda[i].image, tankeZerrenda[i].x -= .3, tankeZerrenda[i].y, tankeZerrenda[i].w, tankeZerrenda[i].h);
+            launcher.tankeakBaseaJo(tankeZerrenda[i]);
         }
     }
 
@@ -69,13 +69,14 @@ function initCanvas(){
                 this.y-=3;
             }
             ctx.fillStyle = this.bg;
+            ctx.drawImage(backgroundImage, 10, 10);
             ctx.drawImage(kanoiaImage,this.x,this.y, 25, 450);
 
             for(var i = 0; i < this.tiroa.length; i++){
                 var m = this.tiroa[i];
-                ctx.fillRect(m.x-=4, m.y-=1, m.w, m.h);
+                ctx.fillRect(m.x-=5, m.y, m.w, m.h);
                 this.hitDetect(this.tiroa[i], i);
-                if(m.y <= 0){
+                if(m.x <= 1000){
                     this.tiroa.splice(i,1);
                 }
             }
@@ -88,12 +89,12 @@ function initCanvas(){
             }
         }
 
-        this.tankeaJo = function (m, mi){
+        this.tankeaJo = function (m, ti){
             console.log('crush');
             for(var i = 0; i < tankeak.length; i++){
                 var t = tankeak[i];
-                if(m.x+m.w >= e.x && m.x <= e.x+e.w && m.y >= e.y && m.y <= e.y+e.h){
-                    this.tiroa.splice(this.tiroa[mi], 1);
+                if(m.x+m.w >= t.x && m.x <= t.x+t.w && m.y >= t.y && m.y <= t.y+t.h){
+                    this.tiroa.splice(this.tiroa[ti], 1);
                     tankeak.splice(i, 1);
                 }
             }
