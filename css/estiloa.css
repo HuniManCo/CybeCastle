@@ -1,0 +1,14 @@
+body {
+  margin:10px; background-image: url("../images/background0.jpg"); 
+}
+
+.container {
+  width:1050px;
+  margin:0 auto;
+}
+
+#canvasa{ 
+  background:#000000;
+  border-radius: 10px;
+  border:green 1px solid;
+}
