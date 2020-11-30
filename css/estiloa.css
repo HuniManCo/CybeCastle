@@ -1,5 +1,7 @@
 body {
-  margin:10px; background-image: url("../images/background0.jpg"); 
+  margin:10px; background-image: url("../images/background0.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .container {
