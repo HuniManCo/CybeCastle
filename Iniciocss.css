@@ -1,3 +1,9 @@
+body {
+    margin:0px; background-image: url("../images/cybercastle.jpg");
+    background-size: cover;
+    background-repeat: no-repeat; 
+}
+
 .botonalternativo { 
     color: #193777;
     background-color: black;
