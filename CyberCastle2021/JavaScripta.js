@@ -8,7 +8,7 @@ function initCanvas(){
     var baseEnemigaImage = new Image();
 
     backgroundImage.src = "images/background.jpg";
-    kanoiaImage.src = "images/Kañon.jpg";
+    kanoiaImage.src = "images/kanoia.png";
     tankeImage.src = "images/Tankea.png";
     baseImage.src = "images/Base.png";
     baseEnemigaImage.src = "images/BaseEnegiga.png";
@@ -28,26 +28,26 @@ function initCanvas(){
     }
 
     var tankeak = [
-            new tankeTemplate({id: "Tanke 1", x: 350, y: -70, w: 80, h: 80}),
-            new tankeTemplate({id: "Tanke 2", x: 330, y: -90, w: 80, h: 80}),
-            new tankeTemplate({id: "Tanke 3", x: 400, y: -70, w: 80, h: 80}),
-            new tankeTemplate({id: "Tanke 4", x: 250, y: -95, w: 80, h: 80}),
-            new tankeTemplate({id: "Tanke 5", x: 460, y: -85, w: 80, h: 80}),
-            new tankeTemplate({id: "Tanke 6", x: 360, y: -75, w: 80, h: 80}),
-            new tankeTemplate({id: "Tanke 7", x: 300, y: -60, w: 80, h: 80}),
-            new tankeTemplate({id: "Tanke 8", x: 210, y: -95, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 1", x: 1000, y: 500, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 2", x: 1230, y: 450, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 3", x: 1060, y: 400, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 4", x: 1500, y: 525, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 5", x: 1580, y: 380, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 6", x: 1350, y: 380, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 7", x: 1400, y: 480, w: 80, h: 80}),
+            new tankeTemplate({id: "Tanke 8", x: 1200, y: 520, w: 80, h: 80}),
     ];
 
     var renderTankeak = function (tankeZerrenda){
         for (var i = 0; i < tankeZerrenda.length; i++){
             console.log(tankeZerrenda[i]);
-            ctx.drawImage(tankeZerrenda[i].image, tankeZerrenda[i].x -= .3, tankeZerrenda[i].y, tankeZerrenda[i].w, tankeZerrenda[i].h);
+            ctx.drawImage(tankeZerrenda[i].image, tankeZerrenda[i].x -=.5, tankeZerrenda[i].y, tankeZerrenda[i].w, tankeZerrenda[i].h);
             launcher.tankeakBaseaJo(tankeZerrenda[i]);
         }
     }
 
     function Launcher(){
-        this.y = canvasHeigh*.2-450,
+        this.y = 500,
         this.x = 25,
         this.w = 100,
         this.h = 100,
@@ -55,27 +55,27 @@ function initCanvas(){
         this.bg = "black",
         this.tiroa = [];
 
-        this.gameStatus = {
+         this.gameStatus = {
             over: false,
-            message: "Galdu egin duzu, saiatu berriro!",
-            fillStyle: 'green',
-            font: 'italic bold 50px Arial, sans-serif',
+            message: "Zorionak!",
+            fillStyle: 'red',
+            font: 'italic bold 36px Arial, sans-serif',
         }
 
         this.render = function (){
             if(this.norabidea === "downArrow"){
-                this.y+=3;
+                this.y+=2;
             }
             else if(this.norabidea === "upArrow"){
-                this.y-=3;
+                this.y-=2;
             }
             ctx.fillStyle = this.bg;
-            ctx.drawImage(backgroundImage, 10, 10);
-            ctx.drawImage(kanoiaImage,this.x,this.y, 25, 450);
+            ctx.drawImage(backgroundImage, 0, 0);
+            ctx.drawImage(kanoiaImage,this.x,this.y, 60, 35);
 
             for(var i = 0; i < this.tiroa.length; i++){
                 var m = this.tiroa[i];
-                ctx.fillRect(m.x-=5, m.y, m.w, m.h);
+                ctx.fillRect(m.x+=5, m.y, m.w, m.h);
                 this.hitDetect(this.tiroa[i], i);
                 if(m.x >= 1000){
                     this.tiroa.splice(i,1);
@@ -102,13 +102,14 @@ function initCanvas(){
         }
 
         this.tankeakBaseaJo = function(Tanke){
-            if(Tanke.x < 25){
+            if(Tanke.x < 40){
                 this.gameStatus.over = true;
                 this.gameStatus.message = 'Tankeak zure basera heldu dira!';
             }
             if(this.gameStatus.over === true){
                 clearInterval(animateInterval);
                 ctx.fillStyle = this.gameStatus.fillStyle;
+                ctx.font = this.gameStatus.font;
                 ctx.fillText(this.gameStatus.message, canvasWidth*.5-80, 50);
             }
         }
@@ -116,16 +117,17 @@ function initCanvas(){
 
     var launcher = new Launcher();
     function animate(){
-        ctx.clearRect(0,0, canvasWidth, canvasHeigh);
+        ctx.clearRect(0,0, canvasWidth, canvasHeight);
         launcher.render();
         renderTankeak(tankeak);
     }
     var animateInterval = setInterval(animate, 6);
 
     document.addEventListener('keydown', function(event){
-        if(event.keyCode == 38){
+        if(event.keyCode == 38)
+        {
             launcher.norabidea = 'upArrow';
-            if(launcher.y < canvasHeigh*.2-80){
+            if(launcher.y < canvasHeight*2 - 80){
                 launcher.y += 0;
                 launcher.norabidea = '';
             }
@@ -135,11 +137,8 @@ function initCanvas(){
     document.addEventListener('keyup', function(event){
         if (event.keyCode == 38)
         {
-            launcher.norabidea = 'upArrow';
-            if(launcher.y < canvasHeigh*.2-80){
-                launcher.y += 0;
-                launcher.norabidea = '';
-            }
+            launcher.y -= 0;
+           launcher.direccion = '';
         }
     });
 
@@ -157,20 +156,21 @@ function initCanvas(){
    document.addEventListener('keyup', function(event){
         if(event.keyCode == 40)
         {
-          launcher.y += 0;
+          launcher.y -= 0;
           launcher.norabidea = '';
         }
    });
 
    document.addEventListener('keydown', function(event){
-       if (event.keyCode == 82){
-        location.reload();
+       if (event.keyCode == 82)
+       {
+           location.reload();
        }
    });
 
     document.addEventListener('keydown', function(event) {
         if(event.keyCode == 32) {
-           launcher.tiroa.push({x: launcher.x + launcher.w*.5, y: launcher.y, w: 3,h: 10});
+           launcher.tiroa.push({x: launcher.x + launcher.w*.5, y: launcher.y, w: 20,h: 30});
         }
     });
 }
