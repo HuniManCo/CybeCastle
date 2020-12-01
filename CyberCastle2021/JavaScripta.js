@@ -7,7 +7,7 @@ function initCanvas(){
     var baseImage = new Image();
     var baseEnemigaImage = new Image();
 
-    backgroundImage.src = "images/background.jpg";
+    backgroundImage.src = "images/backgroundB.jpg";
     kanoiaImage.src = "images/kanoia.png";
     tankeImage.src = "images/Tankea.png";
     baseImage.src = "images/Base.png";
@@ -48,7 +48,7 @@ function initCanvas(){
 
     function Launcher(){
         this.y = 500,
-        this.x = 25,
+        this.x = 50,
         this.w = 100,
         this.h = 100,
         this.norabidea,
@@ -102,7 +102,7 @@ function initCanvas(){
         }
 
         this.tankeakBaseaJo = function(Tanke){
-            if(Tanke.x < 40){
+            if(Tanke.x < 70){
                 this.gameStatus.over = true;
                 this.gameStatus.message = 'Tankeak zure basera heldu dira!';
             }
