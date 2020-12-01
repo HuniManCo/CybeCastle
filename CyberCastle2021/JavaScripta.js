@@ -71,7 +71,7 @@ function initCanvas(){
             }
             ctx.fillStyle = this.bg;
             ctx.drawImage(backgroundImage, 0, 0);
-            ctx.drawImage(kanoiaImage,this.x,this.y, 60, 35);
+            ctx.drawImage(kanoiaImage,this.x,this.y, 80, 55);
 
             for(var i = 0; i < this.tiroa.length; i++){
                 var m = this.tiroa[i];
