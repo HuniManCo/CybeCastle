@@ -1,0 +1,20 @@
+body {
+    margin:0px; background-image: url("../images/cybercastle.jpg");
+    background-size: cover;
+    background-repeat: no-repeat; 
+}
+
+.botonalternativo { 
+    color: #193777;
+    background-color: black;
+    border: 5px solid black;
+    border-radius: 2px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;   
+}
+ 
+.botonalternativo:hover {
+    background-color: #00c69f;
+	border: 2px solid #00c69f;
+    color: golden;
+    text-decoration: none;
+}
