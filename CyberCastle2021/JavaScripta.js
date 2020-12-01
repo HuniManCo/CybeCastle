@@ -76,7 +76,7 @@ function initCanvas(){
             for(var i = 0; i < this.tiroa.length; i++){
                 var m = this.tiroa[i];
                 ctx.fillRect(m.x+=5, m.y, m.w, m.h);
-                this.hitDetect(this.tiroa[i], i);
+                this.tankeaJo(this.tiroa[i], i);
                 if(m.x >= 1000){
                     this.tiroa.splice(i,1);
                 }
@@ -127,7 +127,7 @@ function initCanvas(){
         if(event.keyCode == 38)
         {
             launcher.norabidea = 'upArrow';
-            if(launcher.y < canvasHeight*2 - 80){
+            if(launcher.y > canvasHeight*2 - 80){
                 launcher.y += 0;
                 launcher.norabidea = '';
             }
@@ -135,12 +135,12 @@ function initCanvas(){
     });
 
     document.addEventListener('keyup', function(event){
-        if (event.keyCode == 38)
+        if(event.keyCode == 38)
         {
-            launcher.y -= 0;
-           launcher.direccion = '';
+          launcher.y -= 0;
+          launcher.norabidea = '';
         }
-    });
+   });
 
     document.addEventListener('keydown', function(event){
         if(event.keyCode == 40)
